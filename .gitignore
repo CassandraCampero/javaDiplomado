@@ -21,3 +21,17 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/Buscador/build/
+/Buscador/nbproject/private/
+/Ventas/build/
+/Ventas/nbproject/private/
+/hilosClaseDos/build/
+/hilosClaseDos/nbproject/private/
+/parametros/build/
+/parametros/nbproject/private/
+/socketLocal/build/
+/socketLocal/nbproject/private/
+/yiel/build/
+/yiel/nbproject/private/
+/zanahoria/build/
+/zanahoria/nbproject/private/
