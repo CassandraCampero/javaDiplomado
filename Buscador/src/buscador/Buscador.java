@@ -10,15 +10,24 @@ package buscador;
  * @author indra
  */
 public class Buscador {
-
+    public static String ruta = "./Resources/diplomadouscador.txt";
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        Hilo h1 = new Hilo("Bomba", "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt");
-      
+        Hilo h1 = new Hilo("zapatito", ruta);
+        Hilo h2 = new Hilo("Bomba", ruta);
+        Hilo h3 = new Hilo("Bomba", ruta);
+        Hilo h4 = new Hilo("Bomba", ruta);
+        Hilo h5 = new Hilo("Bomba", ruta);
+
         h1.start();
+        h2.start();
+        h3.start();
+        h4.start();
+        h5.start();
+
     }
 
 }

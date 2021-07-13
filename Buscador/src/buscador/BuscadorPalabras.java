@@ -11,14 +11,16 @@ package buscador;
  */
 public class BuscadorPalabras extends javax.swing.JFrame {
 
-    public static String palabra;
+    public static String palabra ="";
 
+    
     /**
      * Creates new form BuscadorPalabras
      */
     public BuscadorPalabras() {
         initComponents();
-        //resultLabel.setText("");
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -33,7 +35,9 @@ public class BuscadorPalabras extends javax.swing.JFrame {
         buscadorBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         palabraInput = new javax.swing.JTextField();
-        resultLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textResult = new javax.swing.JTextArea();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,9 +64,16 @@ public class BuscadorPalabras extends javax.swing.JFrame {
         });
         getContentPane().add(palabraInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 290, 70));
 
-        resultLabel.setFont(new java.awt.Font("Maku", 0, 24)); // NOI18N
-        resultLabel.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(resultLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 380, 140));
+        jLabel1.setFont(new java.awt.Font("Maku", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Resultado:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+
+        textResult.setColumns(20);
+        textResult.setRows(5);
+        jScrollPane1.setViewportView(textResult);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 390, 150));
 
         fondo.setFont(new java.awt.Font("Maku", 0, 24)); // NOI18N
         fondo.setForeground(new java.awt.Color(255, 255, 255));
@@ -80,22 +91,24 @@ public class BuscadorPalabras extends javax.swing.JFrame {
 
         palabra = palabraInput.getText();
 
-        Hilo h1 = new Hilo(palabra, "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt","");
-        Hilo h2 = new Hilo(palabra, "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt","");
-        Hilo h3 = new Hilo(palabra, "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt","");
-        Hilo h4 = new Hilo(palabra, "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt","");
-        Hilo h5 = new Hilo(palabra, "/Users/indra/Desktop/diplomadoSistemasDistribuidos/diplomadouscador.txt","");
+      
 
+      Hilo h1 = new Hilo(palabra, "./Resources/diplomadouscador.txt",textResult);
+        Hilo h2 = new Hilo(palabra, "./Resources/diplomadouscador.txt",textResult);
+        Hilo h3 = new Hilo(palabra,"./Resources/diplomadouscador.txt",textResult);
+        Hilo h4 = new Hilo(palabra,"./Resources/diplomadouscador.txt",textResult);
+        Hilo h5 = new Hilo(palabra,"./Resources/diplomadouscador.txt",textResult);
+        
+       
+        
+        
         h1.start();
         h2.start();
         h3.start();
         h4.start();
         h5.start();
         
-        resultLabel.setText(h1.resultLabel+ ", " + h2.resultLabel +", "+ h3.resultLabel + ", "+h4.resultLabel+", "+h5.resultLabel);
-        
-        System.out.println(resultLabel.getText());
-
+       
 
     }//GEN-LAST:event_buscadorBtnActionPerformed
 
@@ -137,8 +150,10 @@ public class BuscadorPalabras extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscadorBtn;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField palabraInput;
-    private javax.swing.JLabel resultLabel;
+    private javax.swing.JTextArea textResult;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,7 +6,6 @@
 package buscador;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -16,46 +15,42 @@ import java.util.logging.Logger;
  *
  * @author indra
  */
-public class Hilo extends Thread{
-    String resultLabel;
-    String palabra, direccion, lectura, resultado = "";
+public class Hilo extends Thread {
+
+    javax.swing.JTextArea textResult;
+    String palabra, direccion, lectura;
     int contador;
-    
-    
-    public Hilo(String p, String d){
-    this.palabra = p;
-    this.direccion = d;
+
+    public Hilo(String p, String d) {
+        this.palabra = p;
+        this.direccion = d;
     }
-    
-    public Hilo(String p, String d, String rl){
-    this.palabra = p;
-    this.direccion = d;
-    this.resultLabel = rl;
+
+    public Hilo(String p, String d, javax.swing.JTextArea textResult) {
+        this.palabra = p;
+        this.direccion = d;
+        this.textResult = textResult;
     }
-    
+
     @Override
-    public void run(){
-        
+    public void run() {
+
         try {
             BufferedReader buffer = new BufferedReader(new FileReader(direccion));
-            while((lectura = buffer.readLine()) != null){
+            while ((lectura = buffer.readLine()) != null) {
                 //System.out.println(lectura);
-                
-                if(lectura.contains(palabra)){
-                contador++;
+
+                if (lectura.contains(palabra)) {
+                    contador++;
                 }
             }
-           // System.out.println("  Palabra: " + palabra +" encontrada " + contador +" veces");
-            
-            if(resultLabel != null ){
-               // String aux = resultLabel.getText();
-                resultLabel = "Palabra: " + palabra +" encontrada, " + contador + " veces\n";
+            System.out.println("Palabra: " + palabra + " encontrada " + contador + " veces\n");
+            if(textResult != null){ textResult.append("Palabra: " + palabra + " encontrada " + contador + " veces\n");}
+           
 
-            }
-            
-        } catch ( IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 }
